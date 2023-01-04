@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       screenId: this.screenId,
-      title: "<Roster-Bot />",
+      title: "<Roster Bot />",
     };
   },
   methods: {
