@@ -1,7 +1,8 @@
 <template>
   <v-app style="height:100vh; background-image: linear-gradient(to bottom, #006eff, #005eff, #004eff, #003eff, #002eff);">
-    <AppBar @changeId="changeScreen" />
+    <AppBar :screenId="screenId" @changeId="changeScreen" />
     <v-main style="width:100vw; height:calc(100vh - 75px); justify-content:center;">
+      <Home @changeScreen="changeScreen(3)" v-if="screenId == 0" /> 
       <Register v-if="screenId == 3" /> 
     </v-main>
     
@@ -10,15 +11,16 @@
 <script>
 import AppBar from "./components/AppBar";
 import Register from "./components/Register";
+import Home from "./components/Home";
 export default {
   name: "App",
   components: {
     AppBar,
+    Home,
     Register
   },
   methods: {
     changeScreen(id){
-      console.log(id)
       this.screenId = id
     },
   },

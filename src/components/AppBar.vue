@@ -23,13 +23,13 @@
           text
         >
           <p
-            :class="{ 'app-bar-button-selected-text': selectedButton == 0 }"
+            :class="{ 'app-bar-button-selected-text': screenId == 0 }"
             class="app-bar-buttons-text"
           >
             Início
           </p>
         </v-btn>
-        <!-- <v-btn
+        <v-btn
           class="mr-4"
           @click="activeButton(1)"
           href="#"
@@ -38,13 +38,13 @@
           text
         >
           <p
-            :class="{ 'app-bar-button-selected-text': selectedButton == 1 }"
+            :class="{ 'app-bar-button-selected-text': screenId == 1 }"
             class="app-bar-buttons-text"
           >
             Projeto
           </p>
         </v-btn>
-        <v-btn
+        <!-- <v-btn
           class="mr-4"
           @click="activeButton(2)"
           href="#"
@@ -53,7 +53,7 @@
           text
         >
           <p
-            :class="{ 'app-bar-button-selected-text': selectedButton == 2 }"
+            :class="{ 'app-bar-button-selected-text': screenId == 2 }"
             class="app-bar-buttons-text"
           >
             Manual
@@ -68,30 +68,31 @@
           text
         >
           <p
-            :class="{ 'app-bar-button-selected-text': selectedButton == 3 }"
+            :class="{ 'app-bar-button-selected-text': screenId == 3 }"
             class="app-bar-buttons-text"
           >
             Cadastre-se
           </p>
         </v-btn>
-        <!-- <v-btn class="app-bar-special-button" href="#" @click="activeButton(6)" style="height: 24px" rounded outlined small depressed>
-            <p class="app-bar-special-buttons-text">Cadastre-se</p>
-          </v-btn> -->
       </div>
     </v-row>
   </v-app-bar>
 </template>
 <script>
 export default {
+  props: {
+    screenId: {
+      default: 0,
+    },
+  },
   data() {
     return {
-      selectedButton: 0,
-      title: "<Roster Bot Hub />",
+      screenId: this.screenId,
+      title: "<Roster-Bot />",
     };
   },
   methods: {
     activeButton(selectedId) {
-      this.selectedButton = selectedId;
       this.$emit("changeId", selectedId);
     },
   },

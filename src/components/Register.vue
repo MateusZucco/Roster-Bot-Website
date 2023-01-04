@@ -96,11 +96,12 @@
       class="d-flex flex-column justify-center"
       style="height: 65vh; min-height: 500px"
     >
-      <p class="text-register-family" style="text-align: center">
+      <p class="register-text">
         Após registrar-se entre em seu aplicativo Telegram e busque por
-        @RosterBot, selecione e clique em iniciar.
+        <span class="register-special-text">@RosterBot</span>, selecione e
+        clique em iniciar.
       </p>
-      <p class="text-register-family pt-8 pb-16" style="text-align: center">
+      <p class="register-text pt-8 pb-16">
         Você irá logar com seu email e senha e assim nossos serviços estarão
         disponíveis para você!
       </p>
@@ -185,9 +186,7 @@ export default {
 };
 </script>
 <style>
-/* .v-input__append-inner {
-  margin-top: 0px !important;
-} */
+/* flex-boxes */
 .register-box {
   max-width: 1520px;
   align-content: center;
@@ -198,27 +197,7 @@ export default {
     max-width: 1200px;
   }
 }
-.title-register-family {
-  font-family: "primary";
-  display: block;
-  font-style: normal;
-  font-size: 31px;
-  line-height: 34px;
-  letter-spacing: 0.01em;
-  text-align: center;
-  padding-top: 13px;
-  color: var(--tertiary);
-}
-.text-register-family {
-  font-family: "secundary";
-  display: block;
-  font-style: normal;
-  word-break: break-word;
-  font-size: 25px;
-  line-height: 28px;
-  letter-spacing: 0.05em;
-  color: var(--font-primary);
-}
+
 .register-fields {
   width: 75%;
   max-width: 350px;
@@ -226,7 +205,37 @@ export default {
   padding-top: 2px !important;
   /* height: 10px; */
 }
-.send-register-button {
+
+/* fonts */
+.title-register-family {
+  font-family: "primary";
+  display: block;
+  font-style: normal;
+  font-size: 34px;
+  line-height: 36px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  padding-top: 13px;
+  color: var(--tertiary);
+}
+.register-text,
+.register-special-text {
+  font-size: 22px;
+  line-height: 26px;
+  font-family: "secundary";
+  font-style: normal;
+}
+.register-text {
+  color: var(--font-primary);
+  font-style: normal;
+  text-align: justify;
+  letter-spacing: 0.01em;
+}
+.register-special-text {
+  color: var(--secundary) !important;
+  text-decoration: none;
+
+  letter-spacing: 0em;
 }
 .send-register-buttons-text {
   font-family: "appBar";
