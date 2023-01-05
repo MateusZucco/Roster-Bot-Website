@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="11" class="mb-12 d-flex">
+  <v-col cols="11" class="mb-12 d-md-flex">
     <v-col class="svg-box" cols="12" md="5">
       <v-img :src="mySvg" />
     </v-col>

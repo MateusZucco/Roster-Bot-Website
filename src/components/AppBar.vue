@@ -12,8 +12,101 @@
       <div class="d-flex align-center">
         <p class="app-bar-title-text">{{ title }}</p>
       </div>
+
       <v-spacer></v-spacer>
-      <div>
+
+      <v-app-bar-nav-icon v-if="$screenSize < 960" @click="drawer = true">
+        <v-icon large color="white">mdi-equal</v-icon>
+      </v-app-bar-nav-icon>
+
+      <v-navigation-drawer
+        right
+        @click:outside="drawer = false"
+        v-model="drawer"
+        color="black"
+        style="max-height: 100vh; height: 100vh"
+        fixed
+        temporary
+      >
+        <v-list absolute nav dense>
+          <v-list-item-group>
+            <v-list-item
+              active-class="green--text text--accent-4"
+              @click="activeButton(0)"
+            >
+              <v-list-item-icon>
+                <v-icon
+                  class="app-bar-navigation-icon"
+                  large
+                  :color="
+                    screenId == 0 ? 'var(--details)' : 'var(--tertiary)'
+                  "
+                >
+                  mdi-home-circle
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-title
+                ><p
+                  :class="{ 'app-nav-selected-text': screenId == 0 }"
+                  class="app-nav-buttons-text"
+                >
+                  Início
+                </p></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item
+              active-class="green--text text--accent-4"
+              @click="activeButton(1)"
+            >
+              <v-list-item-icon>
+                <v-icon
+                  class="app-bar-navigation-icon"
+                  large
+                  :color="
+                    screenId == 1 ? 'var(--secundary)' : 'var(--tertiary)'
+                  "
+                >
+                  mdi-robot-excited-outline
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-title
+                ><p
+                  :class="{ 'app-nav-selected-text': screenId == 1 }"
+                  class="app-nav-buttons-text"
+                >
+                  Projeto
+                </p></v-list-item-title
+              >
+            </v-list-item>
+            <v-list-item
+              active-class="green--text text--accent-4"
+              @click="activeButton(2)"
+            >
+              <v-list-item-icon>
+                <v-icon
+                  class="app-bar-navigation-icon"
+                  large
+                  :color="
+                    screenId == 2 ? 'var(--secundary)' : 'var(--tertiary)'
+                  "
+                >
+                  mdi-account-plus-outline
+                </v-icon>
+              </v-list-item-icon>
+              <v-list-item-title
+                ><p
+                  :class="{ 'app-nav-selected-text': screenId == 2 }"
+                  class="app-nav-buttons-text"
+                >
+                  Registrar-se
+                </p></v-list-item-title
+              >
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-navigation-drawer>
+
+      <div v-if="$screenSize >= 960">
         <v-btn
           class="mr-4"
           @click="activeButton(0)"
@@ -87,12 +180,14 @@ export default {
   },
   data() {
     return {
-      screenId: this.screenId,
+      // screenId: this.screenId,
       title: "<Roster Bot />",
+      drawer: false,
     };
   },
   methods: {
     activeButton(selectedId) {
+      console.log(selectedId)
       this.$emit("changeId", selectedId);
     },
   },
@@ -108,8 +203,8 @@ export default {
   line-height: 32px;
   letter-spacing: 0.04em;
 }
-.app-bar-buttons-text,
-.app-bar-special-buttons-text {
+
+.app-bar-buttons-text {
   font-family: "appBar";
   font-size: 18px;
   letter-spacing: 0.03em;
@@ -118,12 +213,23 @@ export default {
 .app-bar-buttons-text {
   color: var(--font-primary);
 }
+
+.app-nav-buttons-text {
+  color: var(--tertiary);
+}
+.app-nav-buttons-text,
+.app-nav-selected-text {
+  font-family: "appBar";
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  line-height: 28px;
+}
+
 .app-bar-button-selected-text {
   color: var(--secundary);
 }
-.app-bar-special-buttons-text {
-  font-weight: 600;
-  color: var(--tertiary);
+.app-nav-selected-text{
+  color: var(--details);
 }
 
 .app-bar-special-button {

@@ -97,8 +97,8 @@
       style="height: 65vh; min-height: 500px"
     >
       <p class="register-text">
-        Após registrar-se entre em seu aplicativo Telegram e busque por
-        <span class="register-special-text">@RosterBot</span>, selecione e
+        Caso não seja redirecionado, entre em seu aplicativo Telegram e busque por
+        <a href="https://web.telegram.org/k/#@rosterhub_bot" target="_blank" class="register-special-text">@RosterBot</a>, selecione e
         clique em iniciar.
       </p>
       <p class="register-text pt-8 pb-16">
@@ -148,6 +148,7 @@ export default {
       window.open("https://www.alphr.com/find-chat-id-telegram/", "_blank");
     },
     async success() {
+      window.open("https://web.telegram.org/k/#@rosterhub_bot", "_blank");
       this.telegramId = null;
       this.name = null;
       this.password = null;
@@ -167,7 +168,6 @@ export default {
           email: this.email,
         })
         .then(async (response) => {
-          console.log(response);
           if (response.status >= 200 && response.status < 300) {
             await this.success();
           }

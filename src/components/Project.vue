@@ -16,7 +16,7 @@
         podia trazer para suas vidas.
       </p>
     </div>
-    <div>
+    <div class="pb-18">
       <p class="project-title-text pt-6">Documentos:</p>
       <v-row>
         <v-col cols="11" md="6" class="pt-4 pl-7">
