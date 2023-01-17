@@ -1,12 +1,13 @@
 <template>
-  <v-app style="height:100vh; background-image: linear-gradient(to bottom, #006eff, #005eff, #004eff, #003eff, #002eff);">
+   <v-app style="height:100vh; background-image: linear-gradient(to bottom, #006eff, #005eff, #004eff, #003eff, #002eff);">
     <AppBar :screenId="screenId" @changeId="changeScreen" />
-    <v-main style="width:100vw; height:calc(100vh - 75px); justify-content:center;">
-      <Home @changeScreen="changeScreen(3)" v-if="screenId == 0" /> 
-      <Project v-if="screenId == 1"/>
-      <Register v-if="screenId == 3" /> 
+    <v-main
+      style="width: 100vw; height: calc(100vh - 75px); justify-content: center"
+    >
+      <Home @changeScreen="changeScreen(3)" v-if="screenId == 0" />
+      <Project v-if="screenId == 1" />
+      <Register v-if="screenId == 3" />
     </v-main>
-    
   </v-app>
 </template>
 <script>
@@ -20,12 +21,12 @@ export default {
     AppBar,
     Home,
     Register,
-    Project
+    Project,
   },
   methods: {
-    changeScreen(id){
-      console.log(id)
-      this.screenId = id
+    changeScreen(id) {
+      console.log(id);
+      this.screenId = id;
     },
   },
   data: () => ({
@@ -69,7 +70,7 @@ export default {
   border-radius: 40px;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: #bbbaba; 
+  background-color: #bbbaba;
   border-radius: 40px;
 }
 .content-scroll::-webkit-scrollbar {
@@ -117,11 +118,11 @@ export default {
   background-color: #c9c9c9;
   border-radius: 30px;
 }
-.v-main__wrap{
-  display:flex;
+.v-main__wrap {
+  display: flex;
   justify-content: center;
 }
-.v-text-field .v-label{
+.v-text-field .v-label {
   font-family: "secundary";
   display: block;
   font-style: normal;

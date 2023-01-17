@@ -1,7 +1,7 @@
 <template>
   <v-row class="register-box">
     <v-col md="5" cols="11" style="height: 65vh; min-height: 500px">
-      <div
+      <v-col
         style="
           background: var(--details);
           width: 100%;
@@ -87,7 +87,7 @@
         >
           <p class="send-register-buttons-text">Enviar</p>
         </v-btn>
-      </div>
+      </v-col>
     </v-col>
     <v-spacer></v-spacer>
     <v-col

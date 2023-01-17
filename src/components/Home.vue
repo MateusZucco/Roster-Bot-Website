@@ -36,7 +36,10 @@
       </p>
       <p class="pt-6 home-text">
         Para possuir acesso ao Bot é necessário realizar o cadastro no site,
-        através da aba <a class="home-special-text" @click="$emit('changeScreen')">cadastre-se</a>
+        através da aba
+        <a class="home-special-text" @click="$emit('changeScreen')"
+          >cadastre-se</a
+        >
       </p>
     </v-col>
   </v-col>

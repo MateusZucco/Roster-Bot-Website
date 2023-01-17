@@ -1,12 +1,13 @@
 <template>
   <v-col
-    class="d-flex px-12"
+    class="d-flex px-6 px-md-12"
     style="flex-direction: column; justify-content: space-evenly"
-    cols="11"
+    cols="12"
+    md="11"
   >
     <div>
       <p class="project-title-text">Sobre o projeto:</p>
-      <p class="project-text pt-4 pl-2">
+      <p class="project-text pt-4 pl-md-2">
         O projeto Roster-Bot surgiu como parte do artigo
         <span class="project-special-text">
           "Roster Bot - Estudo de inovações trazidas a sociedade através de
@@ -82,7 +83,7 @@
           </v-row>
         </v-col>
         <v-spacer></v-spacer>
-        <v-col cols="11" md="5">
+        <v-col v-if="$screenSize > 960" cols="11" md="5">
           <v-img :src="mySvg" />
         </v-col>
       </v-row>

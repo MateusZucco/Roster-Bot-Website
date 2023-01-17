@@ -1,143 +1,57 @@
 <template>
-  <v-app-bar
-    elevation="0"
-    fixed
-    app
-    color="var(--primary)"
-    dark
-    height="75px"
-    depressed
-  >
-    <v-row class="px-6 app-bar-boxe">
-      <div class="d-flex align-center">
-        <p class="app-bar-title-text">{{ title }}</p>
-      </div>
+  <div>
+    <v-app-bar
+      elevation="0"
+      fixed
+      app
+      color="var(--primary)"
+      dark
+      height="75px"
+      depressed
+    >
+      <v-row class="px-6 app-bar-boxe">
+        <div class="d-flex align-center">
+          <p class="app-bar-title-text">{{ title }}</p>
+        </div>
 
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-      <v-app-bar-nav-icon v-if="$screenSize < 960" @click="drawer = true">
-        <v-icon large color="white">mdi-equal</v-icon>
-      </v-app-bar-nav-icon>
+        <v-app-bar-nav-icon v-if="$screenSize < 960" @click="drawer = true">
+          <v-icon large color="white">mdi-equal</v-icon>
+        </v-app-bar-nav-icon>
 
-      <v-navigation-drawer
-        right
-        @click:outside="drawer = false"
-        v-model="drawer"
-        color="black"
-        style="max-height: 100vh; height: 100vh"
-        fixed
-        temporary
-      >
-        <v-list absolute nav dense>
-          <v-list-item-group>
-            <v-list-item
-              active-class="green--text text--accent-4"
-              @click="activeButton(0)"
-            >
-              <v-list-item-icon>
-                <v-icon
-                  class="app-bar-navigation-icon"
-                  large
-                  :color="
-                    screenId == 0 ? 'var(--details)' : 'var(--tertiary)'
-                  "
-                >
-                  mdi-home-circle
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-title
-                ><p
-                  :class="{ 'app-nav-selected-text': screenId == 0 }"
-                  class="app-nav-buttons-text"
-                >
-                  Início
-                </p></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item
-              active-class="green--text text--accent-4"
-              @click="activeButton(1)"
-            >
-              <v-list-item-icon>
-                <v-icon
-                  class="app-bar-navigation-icon"
-                  large
-                  :color="
-                    screenId == 1 ? 'var(--secundary)' : 'var(--tertiary)'
-                  "
-                >
-                  mdi-robot-excited-outline
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-title
-                ><p
-                  :class="{ 'app-nav-selected-text': screenId == 1 }"
-                  class="app-nav-buttons-text"
-                >
-                  Projeto
-                </p></v-list-item-title
-              >
-            </v-list-item>
-            <v-list-item
-              active-class="green--text text--accent-4"
-              @click="activeButton(2)"
-            >
-              <v-list-item-icon>
-                <v-icon
-                  class="app-bar-navigation-icon"
-                  large
-                  :color="
-                    screenId == 2 ? 'var(--secundary)' : 'var(--tertiary)'
-                  "
-                >
-                  mdi-account-plus-outline
-                </v-icon>
-              </v-list-item-icon>
-              <v-list-item-title
-                ><p
-                  :class="{ 'app-nav-selected-text': screenId == 2 }"
-                  class="app-nav-buttons-text"
-                >
-                  Registrar-se
-                </p></v-list-item-title
-              >
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-navigation-drawer>
-
-      <div v-if="$screenSize >= 960">
-        <v-btn
-          class="mr-4"
-          @click="activeButton(0)"
-          href="#"
-          x-small
-          depressed
-          text
-        >
-          <p
-            :class="{ 'app-bar-button-selected-text': screenId == 0 }"
-            class="app-bar-buttons-text"
+        <div v-if="$screenSize >= 960">
+          <v-btn
+            class="mr-4"
+            @click="activeButton(0)"
+            href="#"
+            x-small
+            depressed
+            text
           >
-            Início
-          </p>
-        </v-btn>
-        <v-btn
-          class="mr-4"
-          @click="activeButton(1)"
-          href="#"
-          x-small
-          depressed
-          text
-        >
-          <p
-            :class="{ 'app-bar-button-selected-text': screenId == 1 }"
-            class="app-bar-buttons-text"
+            <p
+              :class="{ 'app-bar-button-selected-text': screenId == 0 }"
+              class="app-bar-buttons-text"
+            >
+              Início
+            </p>
+          </v-btn>
+          <v-btn
+            class="mr-4"
+            @click="activeButton(1)"
+            href="#"
+            x-small
+            depressed
+            text
           >
-            Projeto
-          </p>
-        </v-btn>
-        <!-- <v-btn
+            <p
+              :class="{ 'app-bar-button-selected-text': screenId == 1 }"
+              class="app-bar-buttons-text"
+            >
+              Projeto
+            </p>
+          </v-btn>
+          <!-- <v-btn
           class="mr-4"
           @click="activeButton(2)"
           href="#"
@@ -152,24 +66,105 @@
             Manual
           </p>
         </v-btn> -->
-        <v-btn
-          class="mr-4"
-          @click="activeButton(3)"
-          href="#"
-          x-small
-          depressed
-          text
-        >
-          <p
-            :class="{ 'app-bar-button-selected-text': screenId == 3 }"
-            class="app-bar-buttons-text"
+          <v-btn
+            class="mr-4"
+            @click="activeButton(3)"
+            href="#"
+            x-small
+            depressed
+            text
           >
-            Cadastre-se
-          </p>
-        </v-btn>
-      </div>
-    </v-row>
-  </v-app-bar>
+            <p
+              :class="{ 'app-bar-button-selected-text': screenId == 3 }"
+              class="app-bar-buttons-text"
+            >
+              Cadastre-se
+            </p>
+          </v-btn>
+        </div>
+      </v-row>
+    </v-app-bar>
+    <v-navigation-drawer
+      right
+      @click:outside="drawer = false"
+      v-model="drawer"
+      color="black"
+      style="max-height: 100vh; height: 100vh"
+      fixed
+      temporary
+    >
+      <v-list absolute nav dense>
+        <v-list-item-group>
+          <v-list-item
+            active-class="green--text text--accent-4"
+            @click="activeButton(0)"
+          >
+            <v-list-item-icon>
+              <v-icon
+                class="app-bar-navigation-icon"
+                large
+                :color="screenId == 0 ? 'var(--details)' : 'var(--tertiary)'"
+              >
+                mdi-home-circle
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title
+              ><p
+                :class="{ 'app-nav-selected-text': screenId == 0 }"
+                class="app-nav-buttons-text"
+              >
+                Início
+              </p></v-list-item-title
+            >
+          </v-list-item>
+          <v-list-item
+            active-class="green--text text--accent-4"
+            @click="activeButton(1)"
+          >
+            <v-list-item-icon>
+              <v-icon
+                class="app-bar-navigation-icon"
+                large
+                :color="screenId == 1 ? 'var(--secundary)' : 'var(--tertiary)'"
+              >
+                mdi-robot-excited-outline
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title
+              ><p
+                :class="{ 'app-nav-selected-text': screenId == 1 }"
+                class="app-nav-buttons-text"
+              >
+                Projeto
+              </p></v-list-item-title
+            >
+          </v-list-item>
+          <v-list-item
+            active-class="green--text text--accent-4"
+            @click="activeButton(3)"
+          >
+            <v-list-item-icon>
+              <v-icon
+                class="app-bar-navigation-icon"
+                large
+                :color="screenId == 2 ? 'var(--secundary)' : 'var(--tertiary)'"
+              >
+                mdi-account-plus-outline
+              </v-icon>
+            </v-list-item-icon>
+            <v-list-item-title
+              ><p
+                :class="{ 'app-nav-selected-text': screenId == 3 }"
+                class="app-nav-buttons-text"
+              >
+                Registrar-se
+              </p></v-list-item-title
+            >
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
 <script>
 export default {
@@ -187,7 +182,7 @@ export default {
   },
   methods: {
     activeButton(selectedId) {
-      console.log(selectedId)
+      console.log("ss");
       this.$emit("changeId", selectedId);
     },
   },
@@ -228,7 +223,7 @@ export default {
 .app-bar-button-selected-text {
   color: var(--secundary);
 }
-.app-nav-selected-text{
+.app-nav-selected-text {
   color: var(--details);
 }
 
