@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="11" class="mb-12 d-flex">
+  <v-col cols="11" class="mb-12 d-md-flex">
     <v-col class="svg-box" cols="12" md="5">
       <v-img :src="mySvg" />
     </v-col>
@@ -36,7 +36,10 @@
       </p>
       <p class="pt-6 home-text">
         Para possuir acesso ao Bot é necessário realizar o cadastro no site,
-        através da aba <a class="home-special-text" @click="$emit('changeScreen')">cadastre-se</a>
+        através da aba
+        <a class="home-special-text" @click="$emit('changeScreen')"
+          >cadastre-se</a
+        >
       </p>
     </v-col>
   </v-col>

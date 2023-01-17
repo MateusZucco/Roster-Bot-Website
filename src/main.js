@@ -46,6 +46,8 @@ Vue.use(VueMask);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
+Vue.prototype.$screenSize =  window.screen.width
+
 Vue.config.productionTip = false
 
 new Vue({

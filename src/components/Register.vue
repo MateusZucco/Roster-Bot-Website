@@ -158,11 +158,7 @@ export default {
     },
     async success() {
       this.$refs.form.reset();
-      // this.telegramId = null;
-      // this.name = null;
-      // this.password = null;
-      // this.phone = null;
-      // this.email = null;
+      window.open("https://web.telegram.org/k/#@rosterhub_bot", "_blank");
       this.message = "Usuário cadastrado com sucesso!";
       await new Promise((r) => setTimeout(r, 3000));
       this.message = "";
@@ -177,7 +173,6 @@ export default {
           email: this.email,
         })
         .then(async (response) => {
-          console.log(response);
           if (response.status >= 200 && response.status < 300) {
             await this.success();
           }
