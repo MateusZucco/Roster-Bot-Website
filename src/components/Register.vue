@@ -1,56 +1,63 @@
 <template>
   <v-row class="register-box">
     <v-col md="5" cols="11" style="height: 65vh; min-height: 500px">
-      <div
+      <v-form
         style="
           background: var(--details);
           width: 100%;
           height: 100%;
           border-radius: 25px;
-          box-shadow: 14px 14px 15px -4px #0026ff;
+          box-shadow: 14px 14px 15px -4px #0010ff;
           align-items: center;
           display: flex;
           flex-direction: column;
         "
+        ref="form"
+        @submit="registerNewUser"
       >
         <p class="title-register-family">Registre-se</p>
         <v-text-field
           style="padding-top: 25px !important"
           v-model="name"
           label="Nome completo"
+          hide-details
+          placeholder="Nome e Sobrenome"
           class="register-fields"
           background-color="var(--font-primary)"
-          :rules="[rules.required]"
           dense
           outlined
           depressed
         ></v-text-field>
         <v-text-field
           v-model="email"
+          hide-details
           label="Email"
+          placeholder="nome@email.com"
           class="register-fields"
           background-color="var(--font-primary)"
-          :rules="[rules.required]"
           dense
           outlined
           depressed
         ></v-text-field>
         <v-text-field
           v-model="phone"
+          hide-details
           label="Telefone"
+          v-mask="'(##) # ####-####'"
+          placeholder="(99) 9 9999-9999"
           class="register-fields"
           background-color="var(--font-primary)"
-          :rules="[rules.required]"
           dense
           outlined
           depressed
         ></v-text-field>
         <v-text-field
           v-model="telegramId"
+          hide-details
           label="Telegram id"
+          placeholder="1234567890"
           class="register-fields"
           background-color="var(--font-primary)"
-          :rules="[rules.required]"
           dense
           outlined
           depressed
@@ -59,10 +66,10 @@
         >
         </v-text-field>
         <v-text-field
-          :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[rules.required, rules.min]"
-          :type="show1 ? 'text' : 'password'"
-          @click:append="show1 = !show1"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.min]"
+          :type="showPassword ? 'text' : 'password'"
+          @click:append="showPassword = !showPassword"
           v-model="password"
           label="Senha"
           class="register-fields"
@@ -83,11 +90,12 @@
           style="height: 36px"
           rounded
           small
+          placeholder="********"
           depressed
         >
           <p class="send-register-buttons-text">Enviar</p>
         </v-btn>
-      </div>
+      </v-form>
     </v-col>
     <v-spacer></v-spacer>
     <v-col
@@ -98,12 +106,13 @@
     >
       <p class="register-text">
         Após registrar-se entre em seu aplicativo Telegram e busque por
-        <span class="register-special-text">@RosterBot</span>, selecione e
-        clique em iniciar.
+        <span class="register-special-text">@RosterBot</span>, selecione-o e
+        clique em iniciar. (Caso não apareça o botão de iniciar, você deverá
+        digitar o comando "/start", para que assim o bot começe a funcionar)
       </p>
       <p class="register-text pt-8 pb-16">
-        Você irá logar com seu email e senha e assim nossos serviços estarão
-        disponíveis para você!
+        Você irá logar com sua senha e assim nossos serviços estarão disponíveis
+        para você. Bom uso!
       </p>
     </v-col>
   </v-row>
@@ -113,15 +122,15 @@ import axios from "axios";
 export default {
   data() {
     return {
-      name: null,
-      phone: null,
-      telegramId: null,
-      password: null,
-      email: null,
-      message: null,
-      show1: false,
+      name: "",
+      phone: "",
+      telegramId: "",
+      password: "",
+      email: "",
+      message: "",
+      showPassword: false,
       rules: {
-        required: (value) => !!value || "Campo necessário.",
+        // required: (value) => !!value || "Campo necessário.",
         min: (v) => v.length >= 8 || "Mínimo 8 caracteres",
       },
     };
@@ -148,11 +157,12 @@ export default {
       window.open("https://www.alphr.com/find-chat-id-telegram/", "_blank");
     },
     async success() {
-      this.telegramId = null;
-      this.name = null;
-      this.password = null;
-      this.phone = null;
-      this.email = null;
+      this.$refs.form.reset();
+      // this.telegramId = null;
+      // this.name = null;
+      // this.password = null;
+      // this.phone = null;
+      // this.email = null;
       this.message = "Usuário cadastrado com sucesso!";
       await new Promise((r) => setTimeout(r, 3000));
       this.message = "";
@@ -179,7 +189,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.message = error.response.data.errors[0].message;
+          this.message = error.response.data.message;
         });
     },
   },

@@ -41,6 +41,9 @@ library.add(
   faAnglesDown
 );
 
+import VueMask from 'v-mask'
+Vue.use(VueMask);
+
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false
