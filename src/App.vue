@@ -1,5 +1,5 @@
 <template>
-   <v-app style="height:100vh; background-image: linear-gradient(to bottom, #006eff, #005eff, #004eff, #003eff, #002eff);">
+   <v-app style="background-image: linear-gradient(to bottom, #006eff, #005eff, #004eff, #003eff, #002eff);">
     <AppBar :screenId="screenId" @changeId="changeScreen" />
     <v-main
       style="width: 100vw; height: calc(100vh - 75px); justify-content: center"
@@ -35,6 +35,11 @@ export default {
 };
 </script>
 <style>
+body {
+  margin: 0;
+  background-color: #002eff;
+}
+
 /* Vuetify adjusts */
 .v-application p {
   margin-bottom: 0px;

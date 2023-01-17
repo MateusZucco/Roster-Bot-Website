@@ -1,11 +1,12 @@
 <template>
-  <v-row class="register-box">
-    <v-col md="5" cols="11" style="height: 65vh; min-height: 500px">
+  <v-col cols="12" class="align-center mb-12 d-md-flex register-box">
+    <v-col md="5" cols="12">
       <v-form
         style="
+          min-height: 500px;
+          max-height: 600px;
+          max-width: 550px;
           background: var(--details);
-          width: 100%;
-          height: 100%;
           border-radius: 25px;
           box-shadow: 14px 14px 15px -4px #0010ff;
           align-items: center;
@@ -17,6 +18,7 @@
       >
         <p class="title-register-family">Registre-se</p>
         <v-text-field
+          rounded
           style="padding-top: 25px !important"
           v-model="name"
           label="Nome completo"
@@ -29,6 +31,7 @@
           depressed
         ></v-text-field>
         <v-text-field
+          rounded
           v-model="email"
           hide-details
           label="Email"
@@ -40,6 +43,7 @@
           depressed
         ></v-text-field>
         <v-text-field
+          rounded
           v-model="phone"
           hide-details
           label="Telefone"
@@ -52,6 +56,7 @@
           depressed
         ></v-text-field>
         <v-text-field
+          rounded
           v-model="telegramId"
           hide-details
           label="Telegram id"
@@ -66,6 +71,7 @@
         >
         </v-text-field>
         <v-text-field
+          rounded
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.min]"
           :type="showPassword ? 'text' : 'password'"
@@ -84,10 +90,10 @@
         <v-btn
           :disabled="canSend"
           @click="registerNewUser"
-          class="mb-5 px-8"
+          class="mb-5 px-16"
           color="var(--tertiary)"
           href="#"
-          style="height: 36px"
+          style="height: 45px"
           rounded
           small
           placeholder="********"
@@ -98,24 +104,19 @@
       </v-form>
     </v-col>
     <v-spacer></v-spacer>
-    <v-col
-      md="6"
-      cols="11"
-      class="d-flex flex-column justify-center"
-      style="height: 65vh; min-height: 500px"
-    >
-      <p class="register-text">
+    <v-col md="6" cols="12" class="d-flex flex-column justify-center">
+      <p class="register-text pt-4 pt-md-0">
         Após registrar-se entre em seu aplicativo Telegram e busque por
         <span class="register-special-text">@RosterBot</span>, selecione-o e
         clique em iniciar. (Caso não apareça o botão de iniciar, você deverá
         digitar o comando "/start", para que assim o bot começe a funcionar)
       </p>
-      <p class="register-text pt-8 pb-16">
+      <p class="register-text pt-8 pb-12 pb-md-16">
         Você irá logar com sua senha e assim nossos serviços estarão disponíveis
         para você. Bom uso!
       </p>
     </v-col>
-  </v-row>
+  </v-col>
 </template>
 <script>
 import axios from "axios";
@@ -202,12 +203,17 @@ export default {
     max-width: 1200px;
   }
 }
+@media screen and (max-width: 960px) {
+  .register-fields {
+    min-width: 85%;
+  }
+}
 
 .register-fields {
   width: 75%;
-  max-width: 350px;
+  max-width: 400px;
   justify-self: center;
-  padding-top: 2px !important;
+  padding-top: 22px !important;
   /* height: 10px; */
 }
 
