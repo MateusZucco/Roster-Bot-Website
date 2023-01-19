@@ -4,7 +4,7 @@
       <v-img :src="mySvg" />
     </v-col>
     <v-spacer></v-spacer>
-    <v-col class="text-box" cols="12" md="6">
+    <v-col class="text-box pb-12 pb-md-0" cols="12" md="6">
       <p class="home-title-text">
         Bem vindo ao <span class="home-special-title-text">Roster Bot!</span>
       </p>

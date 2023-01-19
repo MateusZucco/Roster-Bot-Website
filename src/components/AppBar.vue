@@ -6,6 +6,7 @@
       app
       color="var(--primary)"
       dark
+      absolute
       height="75px"
       depressed
     >
@@ -182,7 +183,7 @@ export default {
   },
   methods: {
     activeButton(selectedId) {
-      console.log("ss");
+      this.drawer = false;
       this.$emit("changeId", selectedId);
     },
   },

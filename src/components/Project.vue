@@ -20,7 +20,7 @@
     <div class="pb-18">
       <p class="project-title-text pt-6">Documentos:</p>
       <v-row>
-        <v-col cols="11" md="6" class="pt-4 pl-7">
+        <v-col cols="11" md="6" class="pt-4 pl-7 pb-12 pb-md-0">
           <v-row class="mt-2">
             <a
               href="https://github.com/MateusZucco/Roster-Bot"
