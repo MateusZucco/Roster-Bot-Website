@@ -14,13 +14,14 @@
           flex-direction: column;
         "
         ref="form"
+        id="form"
         @submit="registerNewUser"
       >
         <p class="title-register-family">Registre-se</p>
         <v-text-field
           rounded
           style="padding-top: 25px !important"
-          v-model="name"
+          v-model="form.name"
           label="Nome completo"
           hide-details
           placeholder="Nome e Sobrenome"
@@ -32,7 +33,7 @@
         ></v-text-field>
         <v-text-field
           rounded
-          v-model="email"
+          v-model="form.email"
           hide-details
           label="Email"
           placeholder="nome@email.com"
@@ -44,10 +45,9 @@
         ></v-text-field>
         <v-text-field
           rounded
-          v-model="phone"
+          v-model="form.phone"
           hide-details
           label="Telefone"
-          v-mask="'(##) # ####-####'"
           placeholder="(99) 9 9999-9999"
           class="register-fields"
           background-color="var(--font-primary)"
@@ -57,7 +57,7 @@
         ></v-text-field>
         <v-text-field
           rounded
-          v-model="telegramId"
+          v-model="form.telegramId"
           hide-details
           label="Telegram id"
           placeholder="1234567890"
@@ -76,7 +76,7 @@
           :rules="[rules.min]"
           :type="showPassword ? 'text' : 'password'"
           @click:append="showPassword = !showPassword"
-          v-model="password"
+          v-model="form.password"
           label="Senha"
           class="register-fields"
           background-color="var(--font-primary)"
@@ -88,7 +88,7 @@
           {{ message }}
         </p>
         <v-btn
-          :disabled="canSend"
+          :disabled="!canSend"
           @click="registerNewUser"
           class="mb-5 px-16"
           color="var(--tertiary)"
@@ -99,7 +99,7 @@
           placeholder="********"
           depressed
         >
-          <p class="send-register-buttons-text">Enviar</p>
+          <p class="send-register-buttons-text" id="sendButton">Enviar</p>
         </v-btn>
       </v-form>
     </v-col>
@@ -123,11 +123,14 @@ import axios from "axios";
 export default {
   data() {
     return {
-      name: "",
-      phone: "",
-      telegramId: "",
-      password: "",
-      email: "",
+      form: {
+        name: "",
+        phone: "",
+        telegramId: "",
+        password: "",
+        email: "",
+      },
+      clearFormCopy: {...this.form},
       message: "",
       showPassword: false,
       rules: {
@@ -139,18 +142,20 @@ export default {
   computed: {
     canSend() {
       if (
-        !!this.name &&
-        this.name.length > 0 &&
-        !!this.email &&
-        this.email.length > 0 &&
-        !!this.phone &&
-        this.phone.length > 0 &&
-        !!this.password &&
-        this.password.length >= 8
+        !!this.form.name &&
+        this.form.name.length > 0 &&
+        !!this.form.email &&
+        this.form.email.length > 0 &&
+        !!this.form.phone &&
+        this.form.phone.length > 0 &&
+        !!this.form.telegramId &&
+        this.form.telegramId.length >= 0 &&
+        !!this.form.password &&
+        this.form.password.length >= 8
       ) {
-        return false;
+        return true;
       }
-      return true;
+      return false;
     },
   },
   methods: {
@@ -158,25 +163,29 @@ export default {
       window.open("https://www.alphr.com/find-chat-id-telegram/", "_blank");
     },
     async success() {
-      this.$refs.form.reset();
+      // this.$refs.form.reset();
+      this.form = this.clearFormCopy
       window.open("https://web.telegram.org/k/#@rosterhub_bot", "_blank");
       this.message = "Usuário cadastrado com sucesso!";
       await new Promise((r) => setTimeout(r, 3000));
       this.message = "";
     },
     async registerNewUser() {
-      axios
+      let responseStatus;
+      await axios
         .post("http://localhost:3030/new-user", {
-          telegramId: this.telegramId,
-          name: this.name,
-          password: this.password,
-          phone: this.phone,
-          email: this.email,
+          telegramId: this.form.telegramId,
+          name: this.form.name,
+          password: this.form.password,
+          phone: this.form.phone,
+          email: this.form.email,
         })
         .then(async (response) => {
+          responseStatus = response.status;
           if (response.status >= 200 && response.status < 300) {
             await this.success();
           }
+
           // axios
           //   .post("http://localhost:9999/callNewUser", { user: response.data })
           //   .catch(function (error) {
@@ -184,9 +193,11 @@ export default {
           //   });
         })
         .catch((error) => {
-          console.log(error);
-          this.message = error.response.data.message;
+          responseStatus = error.response.status
+          // console.log(error);
+          this.message = error.response.data.error;
         });
+      return responseStatus;
     },
   },
 };

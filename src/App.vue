@@ -25,7 +25,6 @@ export default {
   },
   methods: {
     changeScreen(id) {
-      console.log(id);
       this.screenId = id;
     },
   },
