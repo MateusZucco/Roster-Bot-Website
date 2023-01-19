@@ -33,7 +33,7 @@ describe("Register.vue", () => {
       expect(wrapper.vm.canSend).toBeFalsy();
     });
 
-    test("computed prop 'canSend' recive true, when is valid", async() => {
+    test("computed prop 'canSend' recive true, when is valid", async () => {
       await wrapper.setData({
         form: {
           name: "",
@@ -59,7 +59,7 @@ describe("Register.vue", () => {
 
       await wrapper.setData({
         form: {
-          email: "aaaaaaaaa"
+          email: "aaaaaaaaa",
         },
       });
 

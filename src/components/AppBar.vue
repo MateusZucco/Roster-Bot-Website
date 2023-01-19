@@ -183,7 +183,7 @@ export default {
   },
   methods: {
     activeButton(selectedId) {
-      this.drawer = false
+      this.drawer = false;
       this.$emit("changeId", selectedId);
     },
   },
