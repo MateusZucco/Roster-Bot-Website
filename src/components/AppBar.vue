@@ -31,6 +31,7 @@
             text
           >
             <p
+              ref="homeText"
               :class="{ 'app-bar-button-selected-text': screenId == 0 }"
               class="app-bar-buttons-text"
             >
@@ -46,37 +47,24 @@
             text
           >
             <p
+              ref="projectText"
               :class="{ 'app-bar-button-selected-text': screenId == 1 }"
               class="app-bar-buttons-text"
             >
               Projeto
             </p>
           </v-btn>
-          <!-- <v-btn
-          class="mr-4"
-          @click="activeButton(2)"
-          href="#"
-          x-small
-          depressed
-          text
-        >
-          <p
-            :class="{ 'app-bar-button-selected-text': screenId == 2 }"
-            class="app-bar-buttons-text"
-          >
-            Manual
-          </p>
-        </v-btn> -->
           <v-btn
             class="mr-4"
-            @click="activeButton(3)"
+            @click="activeButton(2)"
             href="#"
             x-small
             depressed
             text
           >
             <p
-              :class="{ 'app-bar-button-selected-text': screenId == 3 }"
+              ref="registerText"
+              :class="{ 'app-bar-button-selected-text': screenId == 2 }"
               class="app-bar-buttons-text"
             >
               Cadastre-se
@@ -111,6 +99,7 @@
             </v-list-item-icon>
             <v-list-item-title
               ><p
+                ref="moblieHomeText"
                 :class="{ 'app-nav-selected-text': screenId == 0 }"
                 class="app-nav-buttons-text"
               >
@@ -133,6 +122,7 @@
             </v-list-item-icon>
             <v-list-item-title
               ><p
+              ref="moblieProjectText"
                 :class="{ 'app-nav-selected-text': screenId == 1 }"
                 class="app-nav-buttons-text"
               >
@@ -142,7 +132,7 @@
           </v-list-item>
           <v-list-item
             active-class="green--text text--accent-4"
-            @click="activeButton(3)"
+            @click="activeButton(2)"
           >
             <v-list-item-icon>
               <v-icon
@@ -155,7 +145,8 @@
             </v-list-item-icon>
             <v-list-item-title
               ><p
-                :class="{ 'app-nav-selected-text': screenId == 3 }"
+              ref="moblieRegisterText"
+                :class="{ 'app-nav-selected-text': screenId == 2 }"
                 class="app-nav-buttons-text"
               >
                 Registrar-se

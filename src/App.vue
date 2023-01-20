@@ -4,9 +4,9 @@
     <v-main
       style="width: 100vw; height: calc(100vh - 75px); justify-content: center"
     >
-      <Home @changeScreen="changeScreen(3)" v-if="screenId == 0" />
+      <Home @changeScreen="changeScreen(2)" v-if="screenId == 0" />
       <Project v-if="screenId == 1" />
-      <Register v-if="screenId == 3" />
+      <Register v-if="screenId == 2" />
     </v-main>
   </v-app>
 </template>
