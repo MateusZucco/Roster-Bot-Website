@@ -34,36 +34,39 @@ describe("Register.vue", () => {
     });
 
     test("computed prop 'canSend' recive true, when is valid", async () => {
-      await wrapper.setData({
-        form: {
-          name: "",
-          phone: "",
-          telegramId: "",
-          password: "",
-          email: "",
-        },
-      });
-
-      expect(wrapper.vm.canSend).toBeFalsy();
-
+      const FIELDS = ["name", "phone", "telegramId", "password", "email"];
       await wrapper.setData({
         form: {
           name: "aaaaaaaaa",
           phone: "aaaaaaaaa",
           telegramId: "aaaaaaaaa",
           password: "aaaaaaaaa",
-        },
-      });
-
-      expect(wrapper.vm.canSend).toBeFalsy();
-
-      await wrapper.setData({
-        form: {
           email: "aaaaaaaaa",
         },
       });
 
       expect(wrapper.vm.canSend).toBeTruthy();
+
+      let i = 0;
+      while (FIELDS[i]) {
+        let keyName = FIELDS[i].toString();
+        await wrapper.setData({
+          form: {
+            [keyName]: "",
+          },
+        });
+
+        expect(wrapper.vm.canSend).toBeFalsy();
+
+        await wrapper.setData({
+          form: {
+            [keyName]: "aaaaaaaaaaa",
+          },
+        });
+
+        expect(wrapper.vm.canSend).toBeTruthy();
+        i++;
+      }
     });
   });
 
