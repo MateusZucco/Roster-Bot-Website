@@ -25,8 +25,8 @@ To run this WebSite in the development mode, you'll need to have a environment w
 **Cloning the Repository**
 
 ```
-$ git clone https://github.com/MateusZucco/Roster-Bot.git
-$ cd roster-bot
+$ git clone https://github.com/MateusZucco/Roster-Bot-WebSite.git
+$ cd roster-bot-website
 ```
 **Installing dependencies**
 
