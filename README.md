@@ -1,4 +1,4 @@
-# Roster Bot API
+# Roster Website
 
 This is the WebSite of the [Roster Bot](https://github.com/MateusZucco/Roster-Bot), my undergraduate thesis for [IFRS](https://ifrs.edu.br/) that I created a Telegram chatbot with the purpose of helping users when they need manage a roster.
 
